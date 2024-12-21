@@ -111,27 +111,32 @@ namespace Stage2
                 new Rectangle()
             };
 
-           
-            Console.WriteLine("Фигуры выполняют свои задачи:");
+            Console.WriteLine("Фигуры начинают выполнять свои задачи...\n");
 
-            foreach (var figure in figures)
+            while (true) 
             {
-                figure.PerformTask();
-
-                if (figure is IMovable movable)
+                foreach (var figure in figures)
                 {
-                    movable.Move();
+                    figure.PerformTask();
+
+                    if (figure is IMovable movable)
+                    {
+                        movable.Move();
+                    }
+
+                    if (figure is IBuildable buildable)
+                    {
+                        buildable.Build();
+                    }
+
+                    Console.WriteLine();
+
+                    
+                    Thread.Sleep(2000);
                 }
 
-                if (figure is IBuildable buildable)
-                {
-                    buildable.Build();
-                }
-
-                Console.WriteLine();
+                
             }
-
-            Console.WriteLine("Гармония в королевстве восстановлена!");
         }
     }
 }
