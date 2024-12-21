@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Stage2.Figures;
 
 namespace Stage2
 {
@@ -94,7 +95,7 @@ namespace Stage2
             }
             double average = sum / k.GetLength(0);
             double itog = average + minimalElement;
-            Console.WriteLine($"Результат вычислений: {itog:F4}");
+           
             logger.Information($"Результат вычислений: {itog:F4}");
 
 
@@ -103,6 +104,34 @@ namespace Stage2
 
 
             Log.CloseAndFlush();
+            Figure[] figures = {
+                new Circle(itog),      
+                new Triangle(),
+                new Square(),
+                new Rectangle()
+            };
+
+           
+            Console.WriteLine("Фигуры выполняют свои задачи:");
+
+            foreach (var figure in figures)
+            {
+                figure.PerformTask();
+
+                if (figure is IMovable movable)
+                {
+                    movable.Move();
+                }
+
+                if (figure is IBuildable buildable)
+                {
+                    buildable.Build();
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Гармония в королевстве восстановлена!");
         }
     }
 }
