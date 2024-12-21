@@ -15,4 +15,8 @@
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stage2Library\Stage2Library.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,6 @@ public class Square : Figure, IBuildable
 
     public void Build()
     {
-        System.Console.WriteLine($"{Name} строит устойчивые конструкции на равнинах.");
+        System.Console.WriteLine($"{Name} строит устойчивые конструкции на равнинах.\n");
     }
 }

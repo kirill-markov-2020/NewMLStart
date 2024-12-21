@@ -11,6 +11,6 @@ public class Triangle : Figure, IBuildable
 
     public void Build()
     {
-        System.Console.WriteLine($"{Name} использует свои углы для укрепления конструкций.");
+        System.Console.WriteLine($"{Name} использует свои углы для укрепления конструкций.\n");
     }
 }

@@ -17,6 +17,6 @@ public class Circle : Figure, IMovable
 
     public void Move()
     {
-        System.Console.WriteLine($"{Name} движется со скоростью {Speed:F2}.");
+        System.Console.WriteLine($"{Name} движется со скоростью {Speed:F2}.\n");
     }
 }

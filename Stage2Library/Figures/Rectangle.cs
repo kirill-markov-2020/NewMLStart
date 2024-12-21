@@ -11,6 +11,6 @@ public class Rectangle : Figure, IBuildable
 
     public void Build()
     {
-        System.Console.WriteLine($"{Name} соединяет регионы, создавая мосты.");
+        System.Console.WriteLine($"{Name} соединяет регионы, создавая мосты.\n");
     }
 }
