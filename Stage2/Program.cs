@@ -12,7 +12,10 @@ namespace Stage2
         {
             var filename = "Stage1.json";
 
-            // Создание конфигурации
+            string configFilePath = "config.json";
+
+            // Загрузка конфигурации
+            int delay = LoadOrCreateConfig(configFilePath);
             if (!File.Exists(filename))
             {
                 var content = @"{
@@ -136,6 +139,37 @@ namespace Stage2
                 }
 
                 
+            }
+            static int LoadOrCreateConfig(string filePath)
+            {
+                if (!File.Exists(filePath))
+                {
+                    var defaultConfig = @"{
+                        ""Settings"": {
+                            ""Delay"": 2000
+                        }
+                    }";
+                    File.WriteAllText(filePath, defaultConfig);
+                    Console.WriteLine($"Создан конфигурационный файл с задержкой по умолчанию: 2000 мс.");
+                }
+
+                IConfiguration configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile(filePath)
+                    .Build();
+
+                string delayValue = configuration["Settings:Delay"];
+
+                if (int.TryParse(delayValue, out int delay) && delay > 0)
+                {
+                    Console.WriteLine($"Загружена задержка из конфигурационного файла: {delay} мс.");
+                    return delay;
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка в конфигурационном файле. Устанавливается задержка по умолчанию: 2000 мс.");
+                    return 2000;
+                }
             }
         }
     }
