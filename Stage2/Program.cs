@@ -89,7 +89,7 @@ public class Program
 
             if (figures[0] is Circle circle)
             {
-                circle.UpdateRadius(result);
+                circle.UpdateSpeed(result);
             }
 
             foreach (var figure in figures)

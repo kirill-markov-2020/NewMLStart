@@ -1,7 +1,8 @@
-﻿namespace Stage2.Figures;
-
-public interface IMovable
+﻿namespace Stage2.Figures
 {
-    double Speed { get; set; }
-    void Move();
+    public interface IMovable
+    {
+        double Speed { get; set; }
+        void Move();
+    }
 }

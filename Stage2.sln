@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage2", "Stage2\Stage2.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage2Library", "Stage2Library\Stage2Library.csproj", "{F74214FA-7307-4B90-9F3D-70180832FD98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

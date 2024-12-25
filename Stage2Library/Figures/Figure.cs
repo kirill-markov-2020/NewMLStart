@@ -1,15 +1,19 @@
-﻿namespace Stage2.Figures;
-
-public abstract class Figure
+﻿namespace Stage2.Figures
 {
-    public string Name { get; set; }
-    public TaskType Task { get; set; }
-
-    protected Figure(string name, TaskType task)
+    public abstract class Figure
     {
-        Name = name;
-        Task = task;
-    }
+        
+        public TaskType Task { get; set; }
 
-    public abstract void PerformTask();
+        protected Figure(string name, TaskType task)
+        {
+            Name = name;
+            Task = task;
+        }
+
+        public abstract void PerformTask();
+        public string Name { get; set; }
+        public virtual string ImagePath { get; }
+
+    }
 }
