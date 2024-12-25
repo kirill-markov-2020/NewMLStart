@@ -19,4 +19,8 @@ public class Circle : Figure, IMovable
     {
         System.Console.WriteLine($"{Name} движется со скоростью {Speed:F2}.\n");
     }
+    public void UpdateRadius(double newSpeed)
+    {
+        Speed = newSpeed;
+    }
 }

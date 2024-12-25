@@ -6,7 +6,7 @@ namespace Stage2;
 
 public class Program
 {
-    private static ILogger logger; 
+    private static ILogger logger;
 
     static void Main(string[] args)
     {
@@ -80,28 +80,8 @@ public class Program
         int I = N % 6;
         int J = L % 13;
 
-        double minimalElement = k[I, 0];
-        for (int col = 0; col < oddNumbers.Length; col++)
-        {
-            if (k[I, col] < minimalElement)
-            {
-                minimalElement = k[I, col];
-            }
-        }
-        logger.Information($"Минимальный элемент: {minimalElement}");
-
-        double sum = 0;
-        for (int row = 0; row < k.GetLength(0); row++)
-        {
-            sum += k[row, J];
-        }
-        double average = sum / k.GetLength(0);
-        double result = average + minimalElement;
-
-        logger.Information($"Результат вычислений: {result:F2}");
-
         Figure[] figures = {
-            new Circle(result),
+            new Circle(0),
             new Triangle(),
             new Square(),
             new Rectangle()
@@ -109,6 +89,33 @@ public class Program
 
         while (true)
         {
+            double minimalElement = k[I, 0];
+            for (int col = 0; col < oddNumbers.Length; col++)
+            {
+                if (k[I, col] < minimalElement)
+                {
+                    minimalElement = k[I, col];
+                }
+            }
+
+            double sum = 0;
+            for (int row = 0; row < k.GetLength(0); row++)
+            {
+                sum += k[row, J];
+            }
+            double average = sum / k.GetLength(0);
+
+         
+            double randomFactor = random.NextDouble() * 10 - 5; 
+            double result = average + minimalElement + randomFactor;
+
+            logger.Information($"Результат вычислений: {result:F2}");
+
+            if (figures[0] is Circle circle)
+            {
+                circle.UpdateRadius(result);
+            }
+
             foreach (var figure in figures)
             {
                 logger.Information($"Фигура {figure.GetType().Name} выполняет задачу.");
@@ -131,7 +138,6 @@ public class Program
             }
             logger.Information("Один цикл задач завершен. Начинается следующий.");
         }
-
     }
 
     static int LoadOrCreateConfig(string filePath)
@@ -145,7 +151,6 @@ public class Program
                 }";
             File.WriteAllText(filePath, defaultConfig);
             logger.Warning("Конфигурационный файл не найден. Создан новый файл с задержкой по умолчанию: 3000 мс.");
-
         }
 
         IConfiguration configuration = new ConfigurationBuilder()
@@ -162,7 +167,6 @@ public class Program
         else
         {
             logger.Error("Ошибка в конфигурационном файле. Устанавливается задержка по умолчанию: 2000 мс.");
-
             return 3000;
         }
     }
