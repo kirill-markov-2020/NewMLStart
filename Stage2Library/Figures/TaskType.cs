@@ -1,9 +1,10 @@
-﻿namespace Stage2.Figures;
-
-public enum TaskType
+﻿namespace Stage2.Figures
 {
-    ClearPath,      
-    Reinforce,      
-    BuildBridge,    
-    CreateStructures 
+    public enum TaskType
+    {
+        ClearPath,
+        Reinforce,
+        BuildBridge,
+        CreateStructures
+    }
 }
