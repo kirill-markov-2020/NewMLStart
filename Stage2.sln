@@ -5,9 +5,7 @@ VisualStudioVersion = 17.9.34526.213
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage2", "Stage2\Stage2.csproj", "{3FD0A266-9E5D-4508-8A48-E91A6C246023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stage2Library", "Stage2Library\Stage2Library.csproj", "{F74214FA-7307-4B90-9F3D-70180832FD98}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stage2Library", "Stage2Library\Stage2Library.csproj", "{F74214FA-7307-4B90-9F3D-70180832FD98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F74214FA-7307-4B90-9F3D-70180832FD98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BCF89F1-2D6E-4114-BE5E-6C3993FDFE73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
