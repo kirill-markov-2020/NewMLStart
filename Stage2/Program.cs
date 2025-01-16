@@ -1,17 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Serilog;
 using Stage2.Figures;
+using Stage2Library.Helpers;
+
 
 namespace Stage2;
 
 public class Program
 {
-    private static ILogger logger; 
+    private static ILogger logger;
 
     static void Main(string[] args)
     {
         var filename = "Stage1.json";
         string configFilePath = "TimeDelayConfig.json";
+
         Log.Logger = new LoggerConfiguration()
             .WriteTo.File("Logs/logs.txt", rollingInterval: RollingInterval.Day)
             .WriteTo.File("Logs/trace.log", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
@@ -49,6 +52,7 @@ public class Program
         double[,] k = new double[8, 13];
         double[] randomValues = new double[13];
         Random random = new Random();
+
         for (int i = 0; i < randomValues.Length; i++)
         {
             randomValues[i] = Math.Round(random.NextDouble() * 27.0 - 12.0, 2);
@@ -58,50 +62,16 @@ public class Program
         {
             for (int j = 0; j < randomValues.Length; j++)
             {
-                double x = randomValues[j];
-                if (oddNumbers[i] == 9)
-                {
-                    k[i, j] = Math.Sin(Math.Sin(Math.Pow((x / (x + 0.5)), x)));
-                    logger.Verbose($"Verbose: k[{i}, {j}] = {k[i, j]}");
-                }
-                else if (oddNumbers[i] == 5 || oddNumbers[i] == 7 || oddNumbers[i] == 11 || oddNumbers[i] == 15)
-                {
-                    k[i, j] = Math.Pow((0.5 / Math.Tan(2 * x) + (2 / 3)), Math.Pow(x, 1 / 9));
-                    logger.Debug($"Debug: k[{i}, {j}] = {k[i, j]}");
-                }
-                else
-                {
-                    k[i, j] = Math.Pow(Math.Tan(((Math.Exp(1 - x / Math.PI)) / 3) / 4), 3);
-                    logger.Information($"Info: k[{i}, {j}] = {k[i, j]}");
-                }
+                k[i, j] = MathHelper.CalculateK(oddNumbers[i], randomValues[j]);
+                logger.Information($"k[{i}, {j}] = {k[i, j]}");
             }
         }
 
         int I = N % 6;
         int J = L % 13;
 
-        double minimalElement = k[I, 0];
-        for (int col = 0; col < oddNumbers.Length; col++)
-        {
-            if (k[I, col] < minimalElement)
-            {
-                minimalElement = k[I, col];
-            }
-        }
-        logger.Information($"Минимальный элемент: {minimalElement}");
-
-        double sum = 0;
-        for (int row = 0; row < k.GetLength(0); row++)
-        {
-            sum += k[row, J];
-        }
-        double average = sum / k.GetLength(0);
-        double result = average + minimalElement;
-
-        logger.Information($"Результат вычислений: {result:F2}");
-
         Figure[] figures = {
-            new Circle(result),
+            new Circle(0),
             new Triangle(),
             new Square(),
             new Rectangle()
@@ -109,6 +79,19 @@ public class Program
 
         while (true)
         {
+            double minimalElement = MathHelper.CalculateMinimalElement(k, I);
+            double average = MathHelper.CalculateColumnAverage(k, J);
+
+            double randomFactor = random.NextDouble() * 10 - 5;
+            double result = average + minimalElement + randomFactor;
+
+            logger.Information($"Результат вычислений: {result:F2}");
+
+            if (figures[0] is Circle circle)
+            {
+                circle.UpdateSpeed(result);
+            }
+
             foreach (var figure in figures)
             {
                 logger.Information($"Фигура {figure.GetType().Name} выполняет задачу.");
@@ -131,7 +114,6 @@ public class Program
             }
             logger.Information("Один цикл задач завершен. Начинается следующий.");
         }
-
     }
 
     static int LoadOrCreateConfig(string filePath)
@@ -145,7 +127,6 @@ public class Program
                 }";
             File.WriteAllText(filePath, defaultConfig);
             logger.Warning("Конфигурационный файл не найден. Создан новый файл с задержкой по умолчанию: 3000 мс.");
-
         }
 
         IConfiguration configuration = new ConfigurationBuilder()
@@ -162,7 +143,6 @@ public class Program
         else
         {
             logger.Error("Ошибка в конфигурационном файле. Устанавливается задержка по умолчанию: 2000 мс.");
-
             return 3000;
         }
     }

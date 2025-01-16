@@ -1,16 +1,19 @@
-﻿namespace Stage2.Figures;
-
-public class Rectangle : Figure, IBuildable
+﻿namespace Stage2.Figures
 {
-    public Rectangle() : base("Прямоугольник", TaskType.BuildBridge) { }
-
-    public override void PerformTask()
+    public class Rectangle : Figure, IBuildable
     {
-        System.Console.WriteLine($"{Name} строит мосты через препятствия.");
-    }
+        public Rectangle() : base("Прямоугольник", TaskType.BuildBridge) { }
 
-    public void Build()
-    {
-        System.Console.WriteLine($"{Name} соединяет регионы, создавая мосты.\n");
+        public override void PerformTask()
+        {
+            System.Console.WriteLine($"{Name} строит мост через препятствия.");
+        }
+
+        public void Build()
+        {
+            System.Console.WriteLine($"{Name} соединяет регионы, создавая мосты.\n");
+        }
+
+        public override string ImagePath => "avares://Stage2.AvaloniaApp/Images/rectangle.png";
     }
 }

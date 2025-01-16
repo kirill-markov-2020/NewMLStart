@@ -1,6 +1,7 @@
-﻿namespace Stage2.Figures;
-
-public interface IBuildable
+﻿namespace Stage2.Figures
 {
-    void Build(); 
+    public interface IBuildable
+    {
+        void Build();
+    }
 }

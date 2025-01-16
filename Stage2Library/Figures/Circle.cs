@@ -1,22 +1,30 @@
-﻿namespace Stage2.Figures;
-
-public class Circle : Figure, IMovable
+﻿namespace Stage2.Figures
 {
-    public double Speed { get; set; }
-
-    public Circle(double speed) : base("Круг", TaskType.ClearPath)
+    public class Circle : Figure, IMovable
     {
-        Speed = speed;
-    }
+        public double Speed { get; set; }
 
-    public override void PerformTask()
-    {
-        System.Console.WriteLine($"{Name} очищает путь от препятствий.");
-        System.Console.WriteLine($"Текущая скорость: {Speed:F2}.");
-    }
+        public Circle(double speed) : base("Круг", TaskType.ClearPath)
+        {
+            Speed = speed;
+        }
 
-    public void Move()
-    {
-        System.Console.WriteLine($"{Name} движется со скоростью {Speed:F2}.\n");
+        public override void PerformTask()
+        {
+            System.Console.WriteLine($"{Name} очищает путь от препятствий.");
+            System.Console.WriteLine($"Текущая скорость: {Speed:F2}.");
+        }
+
+        public void Move()
+        {
+            System.Console.WriteLine($"{Name} движется со скоростью {Speed:F2}.\n");
+        }
+
+        public void UpdateSpeed(double newSpeed)
+        {
+            Speed = newSpeed;
+        }
+
+        public override string ImagePath => "avares://Stage2.AvaloniaApp/Images/circle.png";
     }
 }

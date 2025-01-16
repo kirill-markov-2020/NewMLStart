@@ -1,16 +1,20 @@
-﻿namespace Stage2.Figures;
-
-public class Square : Figure, IBuildable
+﻿namespace Stage2.Figures
 {
-    public Square() : base("Квадрат", TaskType.CreateStructures) { }
-
-    public override void PerformTask()
+    public class Square : Figure, IBuildable
     {
-        System.Console.WriteLine($"{Name} создает прочные структуры на равнинах.");
-    }
+        public Square() : base("Квадрат", TaskType.CreateStructures) { }
 
-    public void Build()
-    {
-        System.Console.WriteLine($"{Name} строит устойчивые конструкции на равнинах.\n");
+        public override void PerformTask()
+        {
+            System.Console.WriteLine($"{Name} создает прочные структуры.");
+        }
+
+        public void Build()
+        {
+            System.Console.WriteLine($"{Name} строит устойчивые конструкции.\n");
+        }
+
+        public override string ImagePath => "avares://Stage2.AvaloniaApp/Images/square.png";
     }
 }
+
